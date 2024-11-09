@@ -1,5 +1,5 @@
 
-line = '    <company name="ооо Компания">Негры</company>'
+line = '    <company name="ооо Компания"></company>'
 #line = '<description>'
 line = '<employee id="101">'
 tag = line[line.find('<')+1:line.find('>')]
