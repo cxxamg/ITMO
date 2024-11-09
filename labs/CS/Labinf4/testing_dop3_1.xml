@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schedule>
+    <Monday>
+        <lesson>
+            <subject>Программирование (Лаб)</subject>
+            <time>8:20 - 9:50</time>
+            <weeks>3, 5, 7, 9, 11, 13, 15, 17</weeks>
+            <teacher>Наумова Надежда Александровна</teacher>
+            <room>2117</room>
+            <building>Кронверкский пр., д.49, лит.А</building>
+            <format>Очно - дистанционный</format>
+        </lesson>
+        <lesson>
+            <subject>Программирование (Лаб)</subject>
+            <time>10:00 - 11:30</time>
+            <weeks>3, 5, 7, 9, 11, 13, 15, 17</weeks>
+            <teacher>Наумова Надежда Александровна</teacher>
+            <room>2117</room>
+            <building>Кронверкский пр., д.49, лит.А</building>
+            <format>Очно - дистанционный</format>
+        </lesson>
+        <lesson>
+            <subject>Основы дискретной математики (базовый уровень) (Лек)</subject>
+            <time>11:40 - 13:10</time>
+            <weeks>2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18</weeks>
+            <teacher>Поляков Владимир Иванович</teacher>
+            <room>2403</room>
+            <building>Кронверкский пр., д.49, лит.А</building>
+            <format>Очно - дистанционный</format>
+        </lesson>
+        <lesson>
+            <subject>Основы дискретной математики (базовый уровень) (Прак)</subject>
+            <time>13:30 - 15:00</time>
+            <weeks>2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18</weeks>
+            <teacher>Поляков Владимир Иванович</teacher>
+            <room>2403</room>
+            <building>Кронверкский пр., д.49, лит.А</building>
+            <format>Очно - дистанционный</format>
+        </lesson>
+    </Monday>
+    <Thursday>
+        <lesson1>
+            <subject>История русской культуры в контексте мировой культуры (Лек)</subject>
+            <time>10:00 - 11:30</time>
+            <weeks>1, 3, 5, 7, 9, 11, 13, 15</weeks>
+            <teacher>Жиркова Галина Петровна</teacher>
+            <room>1222</room>
+            <building>ул.Ломоносова, д.9, лит. М</building>
+            <format>Очно - дистанционный</format>
+        </lesson>
+        <lesson2>
+            <subject>История русской культуры в контексте мировой культуры (Прак)</subject>
+            <time>13:30 - 15:00</time>
+            <weeks>1, 3, 5, 7, 9, 11, 13, 15</weeks>
+            <teacher>Щеглова Иванна Павловна</teacher>
+            <room>1226</room>
+            <building>ул.Ломоносова, д.9, лит. М</building>
+            <format>Очно - дистанционный</format>
+        </lesson>
+    </Thursday>
+</schedule>
