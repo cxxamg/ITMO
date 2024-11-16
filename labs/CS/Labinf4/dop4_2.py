@@ -1,3 +1,4 @@
+import xml.etree.ElementTree as ET
 import re
 array = []
 
@@ -50,15 +51,35 @@ def divide(line): #РЕГУЛЯРКИ - переделал только divide
         return line.find('<'), tag[0], meaning[0]    #line.find('<') для сохранения отступов 
     else:
         return line.find('<'), tag[0], ''
+    
+def validate_xml(xml_file_path):
+    try:
+        # Попытка разобрать XML
+        tree = ET.parse(xml_file_path)
+        root = tree.getroot()  # Доступ к корневому элементу (проверяем его доступность)
+        print(f"XML синтаксически корректен. Корневой элемент: <{root.tag}>")
+        return True
+    except ET.ParseError as e:
+        print(f"Ошибка синтаксиса XML: {e}")
+        return False
+    except FileNotFoundError:
+        print(f"Файл не найден: {xml_file_path}")
+        return False
+
 def start():
-    xml_file = open('schedule.xml')
-    i = True
-    for line in xml_file:
-        if i:
-            i = False  
-            continue    #пропускаем 1 строку <?xml version="1.0" encoding="UTF-8" ?>
-        else:
-            array.append(line)
-    Xml_To_JSON(array)
+    xml_path = "schedule.xml"  # Укажите путь к XML-файлу
+    if validate_xml(xml_path):
+        xml_file = open(xml_path)
+        i = True
+        for line in xml_file:
+            if i:
+                i = False  
+                continue    #пропускаем 1 строку <?xml version="1.0" encoding="UTF-8" ?>
+            else:
+                array.append(line)
+    #Xml_To_JSON(array)
+        Xml_To_JSON(array)
+    else:
+        print("Исправьте ошибки в XML перед обработкой.")
 
 start()

@@ -1,7 +1,7 @@
 import xmltodict
 import json
 a = ''
-xml_file = open('schedule.xml')
+xml_file = open('testing_dop3.xml')
 for i in xml_file:
     a = a + i
 parsed_xml_file = xmltodict.parse(a)

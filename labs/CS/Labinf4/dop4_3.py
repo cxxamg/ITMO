@@ -1,3 +1,4 @@
+
 array = []
 
 
@@ -123,18 +124,24 @@ def Xml_To_JSON_2(array):
 
 
             elif slash: #отдельная строка </
-                if C: #если сейчас тег с внут элементами
-                    print('\t' + indent + "}"+ commas(values_array[i], values_array[i+1]),file=out)
-                else:
-                    print(indent + "}"+ commas_indent(values_array[i][0], values_array[i+1][0]),file=out)
                 if '/' + cur_tag[1] == values_array[i][1]:
                     #print(values_array[i][1])
                     counter += 1
                     #print(same_tags_count)
                     if counter == same_tags_count[same_tags.index(cur_tag[1])]:
+                        print(counter, values_array[i][1])
+                        print('\t' + indent + "}",file=out)
                         print(indent + "]"+ commas_indent(values_array[i][0], values_array[i+1][0]),file=out)
                         C = False
                         counter = 0
+
+                if C: #если сейчас тег с внут элементами
+                    if values_array[i][1][1:] == values_array[i+1][1]:
+                        print('\t' + indent + "}"+ commas_indent(values_array[i][0], values_array[i+1][0]),file=out)
+                    #print(same_tags_count, same_tags)
+                    else:
+                        print(same_tags, same_tags_count, counter, values_array[i][1])
+                        print('\t' + indent + "}" + commas_indent(values_array[i][0], values_array[i+1][0]),file=out)
 
 
             elif lil_tag: #теги без внутренних элементов(nst)
@@ -278,8 +285,51 @@ def divide(line):
         #meaning = [i.strip() for i in meaning.split(',')]
     return line.find('<'), tag, meaning, T   #line.find('<') для сохранения отступов 
 
+    
+def validate_array(array):
+    opened_tags = []  # Стек для отслеживания открытых тегов
+
+    for i, line in enumerate(array):
+        stripped_line = line.strip()  # Убираем лишние пробелы
+        
+        # Разбиваем строку на теги
+        while "<" in stripped_line:
+            start_index = stripped_line.find("<")
+            end_index = stripped_line.find(">", start_index)
+            
+            if end_index == -1:
+                print(f"Ошибка: Незакрытый тег в строке {i + 1}: {line.strip()}")
+                return False
+            
+            tag = stripped_line[start_index + 1:end_index].strip()
+            stripped_line = stripped_line[end_index + 1:]  # Оставляем остаток строки
+            
+            # Определяем тип тега
+            if tag.startswith("?") or tag.startswith("!"):  # Пропускаем служебные теги
+                continue
+            elif tag.startswith("/"):  # Закрывающий тег
+                tag_name = tag[1:]
+                if not opened_tags or opened_tags[-1] != tag_name:
+                    print(f"Ошибка: Несоответствие тегов в строке {i + 1}: </{tag_name}> не соответствует <{opened_tags[-1] if opened_tags else 'нет открытого тега'}>")
+                    return False
+                opened_tags.pop()
+            elif tag.endswith("/"):  # Самозакрывающийся тег
+                continue
+            else:  # Открывающий тег
+                tag_name = tag.split()[0]
+                opened_tags.append(tag_name)
+
+    # Проверяем незакрытые теги
+    if opened_tags:
+        print(f"Ошибка: Незакрытые теги: {opened_tags}")
+        return False
+    else:
+        print("XML синтаксически корректен.")
+        return True
+
 def start():
-    xml_file = open('schedule.xml')
+    xml_path = "testing_dop3.xml"  # Укажите путь к XML-файлу
+    xml_file = open(xml_path)
     i = True
     for line in xml_file:
         if i:
@@ -288,7 +338,12 @@ def start():
         else:
             array.append(line)
     #Xml_To_JSON(array)
-    Xml_To_JSON_2(array)
 
+
+    if validate_array(array):
+        print("Переход к обработке файла.")
+        Xml_To_JSON_2(array)
+    else:
+        print("Исправьте ошибки в XML перед обработкой.")
 start()
 find_same_tags(array)
