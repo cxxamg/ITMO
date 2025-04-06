@@ -8,25 +8,30 @@ import Engine.Invoker;
 import Engine.WorkingMode;
 import java.util.ArrayList;
 
-
+/**
+ * Класс для работы команд из скрипта
+ * @author Alexander Sokolov
+ * @version 1.0
+ */
 public class ScriptInvoker extends AbstractInvoker{
     private static boolean checkValidatableValues = false;
     private static final ArrayList<String> validatableValues = new ArrayList<>();
     private static Command curValidatableCommand;
     private static boolean isScriptScannerClosed = true;
 
+    /** Конструктор для получения списка commandz */
     public ScriptInvoker(){
         super();
     }
-
+    /**setter для поля проверки если скрипт закрыт */
     public static void setIsScriptScannerClosed(boolean b){
         isScriptScannerClosed = b;
     }
-
+    /**getter для поля проверки если скрипт закрыт */
     public static boolean getIsScriptScannerClosed(){
         return isScriptScannerClosed;
     }
-
+    /**Метод запуска validatable команд с одним параметром для сокращения кода */
     public static void executeAndReset(boolean cVV){
         checkValidatableValues = cVV;
         curValidatableCommand.execute(validatableValues);
@@ -36,7 +41,7 @@ public class ScriptInvoker extends AbstractInvoker{
             exit.execute();
         }
     }
-
+    /**Метод запуска validatable команд с двумя параметрами для сокращения кода */
     public static void execute2ArgsValidCmdAndReset(boolean cVV, String id){
         checkValidatableValues = cVV;
         curValidatableCommand.execute(validatableValues, id);
@@ -46,7 +51,9 @@ public class ScriptInvoker extends AbstractInvoker{
             exit.execute();
         }
     }
-
+    /**Запуск команд из скрипта
+     * @param commands команда из скрипта
+     */
     public void script_invoker(ArrayList<String> commands){
         isScriptScannerClosed = false;
         Invoker.setWorkingMode(WorkingMode.SCRIPT);

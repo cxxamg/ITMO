@@ -7,11 +7,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
-
+/**
+ * Класс для валидации значений из скрипта для создания City обьекта
+ * @author Alexander Sokolov
+ * @version 1.0
+ */
 public class AskScript {
-
+    /**Находиться ли Exit команда за другими arguments для City */
     public static boolean isExitBehindArgs = false;
 
+    /**Список для хранения методов Validate */
     static List<Function<String, String>> validators = List.of(
     Validate::validateName,
     Validate::validateCoordinatesX, //вместо input -> Validate.validateCoordinatesX(input)
@@ -25,7 +30,11 @@ public class AskScript {
     Validate::validateHuman
 );
 
-
+    /** Валидация City из скрипта
+     * @param validatableValues значения для валидации
+     * @return city - обьект
+     * @throws AskBreak при неверных данных и других ошибках
+     */
     public static City askCity(ArrayList<String> validatableValues) throws Ask.AskBreak{
         long cityIndex = 0;
         String name = null;
@@ -115,7 +124,7 @@ public class AskScript {
     } return new City(cityIndex, name, coordinates, localDate, area, population, metersAboveSeaLevel, climate, government, standardOfLiving, human);
     }
 
-
+    /**Метод для сокращения кода */
     static boolean checkIfExitBehindArgs(ArrayList<String> validatableValues, String[] validatedValues) {
         ArrayList<String> behindValues = new ArrayList<>(validatableValues);
         behindValues.removeAll(Arrays.asList(validatedValues));
@@ -123,7 +132,7 @@ public class AskScript {
         return behindValues.contains("exit");
     }
 
-
+    /**Метод для сокращения кода */
     static void checkIfArrayHasEnoughValidArgs(String[] validatedValues) throws Ask.AskBreak{
         for (int i = 0; i < validatedValues.length; i++){
             if (i != 7 && i != 9){

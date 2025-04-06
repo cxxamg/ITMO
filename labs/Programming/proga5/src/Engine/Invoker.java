@@ -3,31 +3,37 @@ package Engine;
 import Commands.*;
 import FileManager.*;
 import java.util.Scanner;
-
+/**
+ * Класс для работы пользовательских команд
+ * @author Alexander Sokolov
+ * @version 1.0
+ */
 public class Invoker extends AbstractInvoker{
 
     public static Scanner sc = new Scanner(System.in);
     private static boolean isScannerClosed = false;
     private static WorkingMode workingMode = WorkingMode.INTERACTIVE;
 
+    /**Установка другого режима работы консоли */
     public static void setWorkingMode(WorkingMode wm){
         workingMode = wm;
     }
-
+    /**getter для режима работы */
     public static WorkingMode getWorkingMode(){
         return workingMode;
     }
-
+    /**setter для режима работы */
     public static void setIsScannerClosed(boolean b){
         isScannerClosed = b;
     }
 
+    /** Конструктор для добавления доп команды exit для пользовательского ввода */
     public Invoker(){
         super();
         this.commandz.put("exit", new ExitCommand());
     }
 
-
+    /** Метод для начала работы консоли */
     public void console(){
         XmlReader.xml_read();
         System.out.println("Console has been launched. Use \"help\" to display help on available commands");

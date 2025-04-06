@@ -2,11 +2,18 @@ package Engine.ScriptManager;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
+/**
+ * Класс для чтения команд, которые написаны в скрипте 
+ * @author Alexander Sokolov
+ * @version 1.0
+ */
 public class ScriptReader {
     public static ArrayList<String> script_commands = new ArrayList<>();
     public static ArrayList<String> pathsRecursion = new ArrayList<>();
 
+    /**Чтение команд из скрипта
+     * @param FilePath путь до файла
+     */
     public static void script_read(String FilePath){
         try(FileReader fr = new FileReader(FilePath)){ //try с ресурсами
             pathsRecursion.add(FilePath);
@@ -16,7 +23,6 @@ public class ScriptReader {
             while ((c = fr.read()) != -1) {
                 if (c == 10){ //конец строки
                     line = cmdBuilder.toString(); //преобразовали много char в String
-                    //System.out.println(line); //----
                     if (line.split("\\s+")[0].equals("execute_script")){ //проверка на рекурсию
                         if (pathsRecursion.contains(line.split("\\s+")[1])){
                             System.out.println("Recursion spotted. From " + FilePath + " to "+ line.split("\\s+")[1]);
@@ -46,9 +52,8 @@ public class ScriptReader {
         } catch (IOException e) {
             System.out.println("Error while reading a file: " + e.getMessage());
         }
-        //System.out.println(pathsRecursion);
-        //System.out.println(script_commands); //----
     }
+    /**Очистка всех полей для следющего чтение execute_script */
     public static void clearScriptCommands(){
         script_commands.clear();
         pathsRecursion.clear();

@@ -2,19 +2,28 @@ package Engine;
 import Entity.*;
 import java.time.LocalDate;
 import java.util.Scanner;
-
+/**
+ * Класс для валидации пользовательских значений
+ * @author Alexander Sokolov
+ * @version 1.0
+ */
 public class Ask {
     public static class AskBreak extends Exception {}
     static Scanner sc = new Scanner(System.in);
     private static long cityCount = 0;
 
+    /**setter для подсчета index for City */
     public static void setCityCount(long l){
         cityCount = l;
     }
+    /**getter для подсчета index for City */
     public static long getCityCount(){
         return cityCount;
     }
 
+    /**Validaция City
+     * @throws AskBreak в случае неудачи при валидации
+     */
     public static City askCity() throws AskBreak{
             System.out.println("* City Creaturing *");
             var cityIndex = cityCount;
@@ -46,7 +55,9 @@ public class Ask {
     }
 
 
-
+    /**Validaция поля 
+     * @throws AskBreak в случае неудачи при валидации
+     */
     public static Coordinates askCoordinates() throws AskBreak{
         long x = 0;
         while(true) {
@@ -74,7 +85,9 @@ public class Ask {
         } return new Coordinates(x, y);
 
     }
-
+    /**Validaция поля 
+     * @throws AskBreak в случае неудачи при валидации
+     */
     public static float askArea() throws AskBreak{
         float area = 0.0f;
         while (true) {
@@ -91,7 +104,9 @@ public class Ask {
         }
         return area;
     }
-
+    /**Validaция поля 
+     * @throws AskBreak в случае неудачи при валидации
+     */
     public static int askPopulation() throws AskBreak{
         int population = 0;
         while (true) {
@@ -108,7 +123,9 @@ public class Ask {
         }
         return population;
     }
-
+    /**Validaция поля 
+     * @throws AskBreak в случае неудачи при валидации
+     */
     public static int askMetersAboveSeaLevel() throws AskBreak{
         int metersAboveSeaLevel = 0;
         while (true) {
@@ -125,6 +142,9 @@ public class Ask {
         }
         return metersAboveSeaLevel;
     }
+    /**Validaция поля 
+     * @throws AskBreak в случае неудачи при валидации
+     */
     public static Climate askClimate() throws AskBreak {
         Climate climate = null;
         while (true) {
@@ -139,6 +159,9 @@ public class Ask {
             break; 
         } return climate;
     }
+    /**Validaция поля 
+     * @throws AskBreak в случае неудачи при валидации
+     */
     public static Government askGovernment() throws AskBreak {
         Government government = null;
         while (true) {
@@ -153,6 +176,9 @@ public class Ask {
             break;
         } return government;
     }
+    /**Validaция поля 
+     * @throws AskBreak в случае неудачи при валидации
+     */
     public static StandardOfLiving askStandardOfLiving() throws AskBreak {
         StandardOfLiving standardOfLiving = null;
         while (true) {
@@ -167,6 +193,9 @@ public class Ask {
             break; 
         } return standardOfLiving;
     }
+    /**Validaция поля 
+     * @throws AskBreak в случае неудачи при валидации
+     */
     public static Human askHuman() throws AskBreak{
         Human human = null;
         String name = null;

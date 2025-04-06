@@ -1,7 +1,7 @@
 package Entity;
 public class Coordinates {
-    private long x;
-    private float y;
+    private final long x;
+    private final float y;
 
     public Coordinates(long x, float y){
         this.x = x;

@@ -1,13 +1,17 @@
 package Engine;
 import Entity.*;
 
-/* 0 - exit
+/** 0 - exit
  * 1 - Все успешно
  * 2 - Invalid Format
  * 3 - Cant be null 
  * 4 - Неправильный диапазон числа*/
 
-
+/**
+ * Класс содержащий методы для валидации полей City
+ * @author Alexander Sokolov
+ * @version 1.0
+ */
 public class Validate{
     public static class AskBreak extends Exception {} 
 

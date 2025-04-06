@@ -1,7 +1,11 @@
 package Commands;
 
 import java.util.ArrayList;
-
+/**
+ * Интерфейс для всех команд
+ * @author Alexander Sokolov
+ * @version 1.0
+ */
 public interface Command {
     void execute();        
     void execute(String arg);

@@ -9,24 +9,29 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import javax.xml.stream.*;
 import javax.xml.stream.events.XMLEvent;
-
+/**
+ * Класс для считывания и валидации информации с Xml файла
+ * @author Alexander Sokolov
+ * @version 1.0
+ */
 public class XmlReader implements XmlFilePathInterface{
     private static boolean isCreationDateUnchecked = false;
     private static String curCreationDate;
 
+    /**getter для поля нынешний CreationDate */
     public static String getCurCreationDate(){
         return curCreationDate;
     }
-
+    /**setter для поля если CreationDate был непроверен */
     public static void setIsCreationDateUnchecked(boolean b){
         isCreationDateUnchecked = b;
     }
-
+    /**getter для поля если CreationDate был непроверен */
     public static boolean getIsCreationDateUnchecked(){
         return isCreationDateUnchecked;
     }
 
-
+    /**Чтение Xml файла */
     public static void xml_read(){
         ArrayList<String> validatableValues = new ArrayList<>();
         ArrayList<String> recentValidatableTags = new ArrayList<>();
@@ -93,7 +98,7 @@ public class XmlReader implements XmlFilePathInterface{
             }
         } 
         
-
+        /**Метод для сокращения кода, который создает City обьект */
         static void cityCreaturing(ArrayList<String> validatableValues, ArrayList<String> alreadyValidatableTags){
             if (!validatableValues.isEmpty()){
                 City city = null;

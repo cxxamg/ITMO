@@ -7,8 +7,15 @@ import java.io.IOException;
 import java.util.Stack;
 import javax.xml.stream.*;
 import javax.xml.stream.events.XMLEvent;
-
+/**
+ * Класс для написания Xml файла из Stack
+ * @author Alexander Sokolov
+ * @version 1.0
+ */
 public class XmlWriter implements XmlFilePathInterface{
+    /** Написание нового Xml Файла
+     * @param stack коллекция из которой будет писаться новый Xml файл
+    */
     public static void xml_write(Stack<City> stack){
         try {
             XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
@@ -90,6 +97,7 @@ public class XmlWriter implements XmlFilePathInterface{
                 System.out.println("Unknown error: " + e.getMessage());
             }
     }
+    /** метод для сокращения кода, который пишет одно поле в Xml */
     static void writeElement(XMLEventWriter writer, XMLEventFactory eventFactory, String tagName, String value, int tab) throws XMLStreamException{
         writer.add(eventFactory.createCharacters("\t".repeat(tab)));
         writer.add(eventFactory.createStartElement("", "", tagName));
@@ -97,7 +105,7 @@ public class XmlWriter implements XmlFilePathInterface{
         writer.add(eventFactory.createEndElement("", "", tagName));
         writer.add(eventFactory.createCharacters("\n"));
     }
-
+    /** метод для сокращения кода, который пишет именно Coordinates поле в Xml */
     static void writeCoordinates(XMLEventWriter writer, XMLEventFactory eventFactory, int tab, String coordinatesX, String coordinatesY) throws XMLStreamException{
         writer.add(eventFactory.createCharacters("\t".repeat(tab)));
         writer.add(eventFactory.createStartElement("", "", "coordinates"));
